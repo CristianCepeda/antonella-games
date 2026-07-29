@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tonella's Breakfast Dash</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div id="app">
+
+    <!-- START SCREEN -->
+    <section id="start-screen" class="screen">
+      <div class="screen-card">
+        <h1>🍳 Tonella's Breakfast Dash</h1>
+        <p class="subtitle">Seat 'em, cook 'em, feed 'em — before they storm out hungry.</p>
+        <ol class="howto">
+          <li>Tap a waiting customer to seat them at an open table.</li>
+          <li>See what they ordered above their head, then tap the matching station to start cooking.</li>
+          <li>That's it! Hot food is served automatically the moment it's ready — just keep seating and cooking before patience runs out.</li>
+        </ol>
+        <button id="start-btn" class="btn primary">Start Day 1</button>
+      </div>
+    </section>
+
+    <!-- GAME SCREEN -->
+    <section id="game-screen" class="screen hidden">
+      <header id="hud">
+        <div class="hud-item"><span class="hud-label">Day</span><span id="hud-day">1</span></div>
+        <div class="hud-item"><span class="hud-label">Money</span><span id="hud-money">$0</span></div>
+        <div class="hud-item"><span class="hud-label">Goal</span><span id="hud-goal">$0</span></div>
+        <div class="hud-item"><span class="hud-label">Lives</span><span id="hud-lives">❤️❤️❤️</span></div>
+      </header>
+
+      <div id="restaurant">
+        <div id="queue-area">
+          <div class="area-label">Waiting</div>
+          <div id="queue"></div>
+        </div>
+
+        <div id="floor">
+          <div id="tables"></div>
+        </div>
+
+        <div id="kitchen">
+          <div class="area-label">Kitchen</div>
+          <div id="stations"></div>
+        </div>
+      </div>
+
+      <div id="popup-layer"></div>
+    </section>
+
+    <!-- LEVEL COMPLETE SCREEN -->
+    <section id="levelcomplete-screen" class="screen hidden">
+      <div class="screen-card">
+        <h1>🎉 Day Complete!</h1>
+        <p id="levelcomplete-summary" class="subtitle"></p>
+        <button id="next-day-btn" class="btn primary">Start Next Day</button>
+      </div>
+    </section>
+
+    <!-- GAME OVER SCREEN -->
+    <section id="gameover-screen" class="screen hidden">
+      <div class="screen-card">
+        <h1>😞 Kitchen's Closed</h1>
+        <p id="gameover-summary" class="subtitle"></p>
+        <button id="retry-btn" class="btn primary">Try Again</button>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="assets.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

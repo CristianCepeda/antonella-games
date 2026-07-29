@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Emberwing Survival</title>
+  <link rel="stylesheet" href="styles.css?v=3" />
+</head>
+<body>
+  <div id="game-container">
+    <canvas id="game-canvas"></canvas>
+    <div id="hud">
+      <div id="time-display">Day 1 / 6:00 AM</div>
+      <div id="hunger-bar-container">
+        <div id="hunger-bar-fill"></div>
+        <span id="hunger-label">Hunger: 100</span>
+      </div>
+      <div id="warmth-bar-container" class="stat-bar-container">
+        <div id="warmth-bar-fill" class="stat-bar-fill"></div>
+        <span id="warmth-label" class="stat-bar-label">Warmth: 50</span>
+      </div>
+      <div id="stamina-bar-container" class="stat-bar-container">
+        <div id="stamina-bar-fill" class="stat-bar-fill"></div>
+        <span id="stamina-label" class="stat-bar-label">Stamina: 100</span>
+      </div>
+    </div>
+    <div id="top-right-panel">
+      <button id="touch-toggle-btn">📱 Touch Controls</button>
+      <div id="health-bar-container" class="stat-bar-container">
+        <div id="health-bar-fill" class="stat-bar-fill"></div>
+        <span id="health-label" class="stat-bar-label">Health: 100</span>
+      </div>
+      <div id="inventory-panel">
+        <div id="inventory-title">Inventory</div>
+        <ul id="inventory-list"></ul>
+      </div>
+    </div>
+    <div id="touch-controls" class="hidden">
+      <div id="touch-dpad">
+        <button class="touch-btn touch-hold dpad-up" data-key="w">▲</button>
+        <button class="touch-btn touch-hold dpad-left" data-key="a">◀</button>
+        <button class="touch-btn touch-hold dpad-down" data-key="s">▼</button>
+        <button class="touch-btn touch-hold dpad-right" data-key="d">▶</button>
+      </div>
+      <div id="touch-actions">
+        <button class="touch-btn touch-hold" data-key="e">Gather<br><small>E</small></button>
+        <button class="touch-btn touch-tap" data-key=" ">Attack<br><small>SPACE</small></button>
+        <button class="touch-btn touch-hold" data-key="shift">Sprint<br><small>SHIFT</small></button>
+        <button class="touch-btn touch-tap" data-key="c">Craft<br><small>C</small></button>
+        <button class="touch-btn touch-tap" data-key="f">Fire<br><small>F</small></button>
+        <button class="touch-btn touch-tap" data-key="r">Cook<br><small>R</small></button>
+        <button class="touch-btn touch-tap" data-key="q">Eat<br><small>Q</small></button>
+        <button class="touch-btn touch-tap" id="touch-shelter-btn">Shelter</button>
+      </div>
+    </div>
+    <div id="gather-hint"></div>
+    <div id="craft-menu" class="hidden">
+      <div id="craft-menu-title">Crafting (press C to close)</div>
+      <ul id="craft-recipe-list"></ul>
+    </div>
+    <div id="overlay" class="hidden">
+      <div id="overlay-title">Starved</div>
+      <div id="overlay-subtitle"></div>
+      <button id="restart-btn">Restart</button>
+    </div>
+  </div>
+  <script src="game.js?v=2"></script>
+</body>
+</html>

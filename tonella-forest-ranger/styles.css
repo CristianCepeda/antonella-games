@@ -1,0 +1,353 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+  font-family: 'Courier New', monospace;
+}
+
+#game-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+#game-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+}
+
+#hud {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  color: #f0e6d2;
+  text-shadow: 1px 1px 2px #000;
+  font-size: 18px;
+  pointer-events: none;
+  user-select: none;
+}
+
+#hunger-bar-container {
+  position: relative;
+  margin-top: 8px;
+  width: 200px;
+  height: 20px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 2px solid #f0e6d2;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+#hunger-bar-fill {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #7bc142, #a9d94a);
+  transition: width 0.2s linear, background 0.2s linear;
+}
+
+#hunger-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #fff;
+  text-shadow: 1px 1px 2px #000;
+}
+
+.stat-bar-container {
+  position: relative;
+  margin-top: 8px;
+  width: 200px;
+  height: 20px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 2px solid #f0e6d2;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.stat-bar-fill {
+  height: 100%;
+  width: 100%;
+  transition: width 0.2s linear, background 0.2s linear;
+}
+
+.stat-bar-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #fff;
+  text-shadow: 1px 1px 2px #000;
+}
+
+#top-right-panel {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  pointer-events: none;
+  user-select: none;
+}
+
+#touch-toggle-btn {
+  pointer-events: auto;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #f0e6d2;
+  border: 2px solid #f0e6d2;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#touch-toggle-btn:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+#inventory-panel {
+  margin-top: 8px;
+  min-width: 160px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 2px solid #f0e6d2;
+  border-radius: 4px;
+  padding: 10px 12px;
+  color: #f0e6d2;
+  text-shadow: 1px 1px 2px #000;
+  pointer-events: none;
+  user-select: none;
+}
+
+#inventory-title {
+  font-size: 16px;
+  margin-bottom: 6px;
+  border-bottom: 1px solid rgba(240, 230, 210, 0.4);
+  padding-bottom: 4px;
+}
+
+#inventory-list {
+  list-style: none;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+#inventory-list li.empty {
+  opacity: 0.5;
+  font-style: italic;
+}
+
+#craft-menu {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 320px;
+  background: rgba(20, 16, 12, 0.95);
+  border: 2px solid #f0e6d2;
+  border-radius: 6px;
+  padding: 16px 20px;
+  color: #f0e6d2;
+}
+
+#craft-menu.hidden {
+  display: none;
+}
+
+#craft-menu-title {
+  font-size: 16px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgba(240, 230, 210, 0.4);
+  padding-bottom: 6px;
+}
+
+#craft-recipe-list {
+  list-style: none;
+}
+
+.craft-recipe-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  padding: 8px 10px;
+  margin-bottom: 6px;
+  background: #3d5a3a;
+  color: #f0e6d2;
+  border: 1px solid #f0e6d2;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.craft-recipe-btn:hover:not(:disabled) {
+  background: #4e7d44;
+}
+
+.craft-recipe-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+#gather-hint {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #f0e6d2;
+  text-shadow: 1px 1px 2px #000;
+  font-size: 14px;
+  pointer-events: none;
+  user-select: none;
+}
+
+#touch-controls {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+#touch-controls.hidden {
+  display: none;
+}
+
+.touch-btn {
+  pointer-events: auto;
+  touch-action: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  font-family: 'Courier New', monospace;
+  color: #f0e6d2;
+  background: rgba(20, 16, 12, 0.55);
+  border: 2px solid rgba(240, 230, 210, 0.7);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.2;
+}
+
+.touch-btn:active {
+  background: rgba(240, 230, 210, 0.35);
+}
+
+.touch-btn small {
+  font-size: 9px;
+  opacity: 0.8;
+}
+
+#touch-dpad {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  width: 168px;
+  height: 168px;
+}
+
+#touch-dpad .touch-btn {
+  position: absolute;
+  width: 56px;
+  height: 56px;
+  font-size: 22px;
+  border-radius: 50%;
+}
+
+.dpad-up { top: 0; left: 56px; }
+.dpad-left { top: 56px; left: 0; }
+.dpad-down { top: 112px; left: 56px; }
+.dpad-right { top: 56px; left: 112px; }
+
+#touch-actions {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 64px);
+  grid-auto-rows: 64px;
+  gap: 10px;
+}
+
+#touch-actions .touch-btn {
+  font-size: 13px;
+  border-radius: 12px;
+}
+
+#overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #f0e6d2;
+  gap: 16px;
+}
+
+#overlay.hidden {
+  display: none;
+}
+
+#overlay-title {
+  font-size: 48px;
+  letter-spacing: 4px;
+}
+
+#overlay.victory #overlay-title {
+  color: #f2c94c;
+}
+
+#overlay.victory #restart-btn {
+  background: #3d7a3a;
+}
+
+#overlay.victory #restart-btn:hover {
+  background: #4e9d47;
+}
+
+#overlay-subtitle {
+  font-size: 18px;
+}
+
+#restart-btn {
+  font-family: 'Courier New', monospace;
+  font-size: 18px;
+  padding: 10px 24px;
+  background: #e0533d;
+  color: #fff;
+  border: 2px solid #f0e6d2;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#restart-btn:hover {
+  background: #c9432e;
+}
